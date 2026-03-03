@@ -1,0 +1,40 @@
+// PalindromeChecker class
+class PalindromeChecker {
+
+    // Public method to check palindrome
+    public boolean checkPalindrome(String word) {
+
+        // Internal logic using two-pointer approach (Array concept)
+        int start = 0;
+        int end = word.length() - 1;
+
+        while (start < end) {
+            if (word.charAt(start) != word.charAt(end)) {
+                return false;
+            }
+            start++;
+            end--;
+        }
+
+        return true;
+    }
+}
+
+// Main class
+public class MainApp {
+
+    public static void main(String[] args) {
+
+        String input = "radar";
+
+        PalindromeChecker checker = new PalindromeChecker();
+
+        boolean result = checker.checkPalindrome(input);
+
+        if (result) {
+            System.out.println(input + " is a Palindrome.");
+        } else {
+            System.out.println(input + " is NOT a Palindrome.");
+        }
+    }
+}
