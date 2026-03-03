@@ -1,0 +1,31 @@
+public class PalindromeIgnoreCase {
+
+    public static void main(String[] args) {
+
+        String input = "Madam In Eden Im Adam";
+
+        // Normalize string: remove spaces & convert to lowercase
+        String cleaned = input.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
+
+        boolean isPalindrome = true;
+        int start = 0;
+        int end = cleaned.length() - 1;
+
+        // Two-pointer comparison
+        while (start < end) {
+            if (cleaned.charAt(start) != cleaned.charAt(end)) {
+                isPalindrome = false;
+                break;
+            }
+            start++;
+            end--;
+        }
+
+        // Display result
+        if (isPalindrome) {
+            System.out.println("\"" + input + "\" is a Palindrome.");
+        } else {
+            System.out.println("\"" + input + "\" is NOT a Palindrome.");
+        }
+    }
+}
