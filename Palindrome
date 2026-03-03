@@ -1,0 +1,75 @@
+import java.util.*;
+
+public class PalindromePerformance {
+
+    public static void main(String[] args) {
+
+        String word = "madamimadam";  // Test input
+
+        // Two Pointer Approach
+        long start1 = System.nanoTime();
+        boolean result1 = twoPointer(word);
+        long end1 = System.nanoTime();
+
+        // Stack Approach
+        long start2 = System.nanoTime();
+        boolean result2 = stackMethod(word);
+        long end2 = System.nanoTime();
+
+        // Deque Approach
+        long start3 = System.nanoTime();
+        boolean result3 = dequeMethod(word);
+        long end3 = System.nanoTime();
+
+        // Display Results
+        System.out.println("Two Pointer Result: " + result1 +
+                " | Time: " + (end1 - start1) + " ns");
+
+        System.out.println("Stack Result: " + result2 +
+                " | Time: " + (end2 - start2) + " ns");
+
+        System.out.println("Deque Result: " + result3 +
+                " | Time: " + (end3 - start3) + " ns");
+    }
+
+    // Two Pointer Method
+    public static boolean twoPointer(String word) {
+        int start = 0, end = word.length() - 1;
+        while (start < end) {
+            if (word.charAt(start) != word.charAt(end)) {
+                return false;
+            }
+            start++;
+            end--;
+        }
+        return true;
+    }
+
+    // Stack Method
+    public static boolean stackMethod(String word) {
+        Stack<Character> stack = new Stack<>();
+        for (char c : word.toCharArray()) {
+            stack.push(c);
+        }
+        for (char c : word.toCharArray()) {
+            if (c != stack.pop()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    // Deque Method
+    public static boolean dequeMethod(String word) {
+        Deque<Character> deque = new LinkedList<>();
+        for (char c : word.toCharArray()) {
+            deque.addLast(c);
+        }
+        while (deque.size() > 1) {
+            if (deque.removeFirst() != deque.removeLast()) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
